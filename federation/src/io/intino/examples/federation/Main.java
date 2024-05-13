@@ -11,10 +11,6 @@ import org.apache.log4j.Level;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.net.MalformedURLException;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.net.URL;
 import java.util.Properties;
 
 import static io.intino.amidas.shared.connectors.ActiveDirectoryConnector.OperationMode.CreateOrUpdateIdentity;
