@@ -10,16 +10,9 @@ Artifact("io.intino.examples", "1.0.0") federation
 		Test("junit", "junit", "4.13.2")
 	Package(mode = ModulesAndLibrariesLinkedByManifest, finalName = "federation") as Runnable("io.intino.examples.federation.Main")
 
-Repository(identifier = "intino-maven")
-	Release(url = "https://artifactory.intino.io/artifactory/releases")
-	Snapshot(url = "https://artifactory.intino.io/artifactory/snapshots")
-
-Repository("siani-maven") siani
-	Release("https://artifactory.siani.es/artifactory/libs-release")
-
-Repository(identifier = "monentia-maven")
-	Release(url = "https://artifactory.monentia.es/artifactory/releases")
-	Snapshot(url = "https://artifactory.monentia.es/artifactory/snapshots")
+Repository("intino-maven")
+	Release("https://artifactory.intino.io/artifactory/releases")
+	Snapshot("https://artifactory.intino.io/artifactory/snapshots")
 
 RunConfiguration local
 	Argument("home", "./temp")
