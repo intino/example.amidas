@@ -1,0 +1,37 @@
+dsl Legio
+
+Artifact("io.intino.examples", "1.0.0") federation
+	Imports
+		Compile("io.intino.amidas", "amidas", "10.0.0")
+		Compile("io.intino.amidas", "microsoft-azure-connector", "1.2.0")
+		Compile("io.intino.amidas", "microsoft-teams-connector", "1.2.0")
+		Compile("io.intino.amidas", "rocketchat-connector", "1.2.3")
+		Compile("io.intino.amidas", "ldap-connector", "1.1.0")
+		Test("junit", "junit", "4.13.2")
+	Package(mode = ModulesAndLibrariesLinkedByManifest, finalName = "federation") as Runnable("io.intino.examples.federation.Main")
+
+Repository(identifier = "intino-maven")
+	Release(url = "https://artifactory.intino.io/artifactory/releases")
+	Snapshot(url = "https://artifactory.intino.io/artifactory/snapshots")
+
+Repository("siani-maven") siani
+	Release("https://artifactory.siani.es/artifactory/libs-release")
+
+Repository(identifier = "monentia-maven")
+	Release(url = "https://artifactory.monentia.es/artifactory/releases")
+	Snapshot(url = "https://artifactory.monentia.es/artifactory/snapshots")
+
+RunConfiguration local
+	Argument("home", "./temp")
+	Argument("port", "9001")
+	Argument("title", "FEDERATION")
+	Argument("subtitle", "Single sign on of Intino")
+	Argument("logo", "./temp/datamarts/federation/logo.png")
+	Argument("background", "./temp/datamarts/federation/login-background.jpg")
+	Argument("background_mode", "dark")
+	Argument("authentication_secret", "1234")
+	Argument("connector_app_url", "http://localhost:9000")
+	Argument("connector_app_cli_path", "/cli/intino-cli")
+	Argument("credentials_file", "./temp/configuration/credentials.conf")
+	Argument("connectors", "rocketChat")
+	Argument("apps_tokens_filename", "./temp/datamarts/apps-tokens.tsv")
