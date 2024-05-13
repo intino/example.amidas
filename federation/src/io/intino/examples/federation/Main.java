@@ -9,7 +9,12 @@ import io.intino.amidas.connectors.microsoft.teams.TeamsConnector;
 import io.intino.amidas.connectors.rocketchat.RocketChatConnector;
 import org.apache.log4j.Level;
 
+import java.io.File;
 import java.io.FileInputStream;
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.Properties;
 
 import static io.intino.amidas.shared.connectors.ActiveDirectoryConnector.OperationMode.CreateOrUpdateIdentity;
@@ -27,7 +32,9 @@ public class Main {
 	private static void setup(AmidasBox box) {
 		try {
 			Properties props = new Properties();
-			props.load(new FileInputStream(box.configuration().get("credentials_file")));
+			File credentialsFile = new File(box.configuration().get("credentials_file"));
+			if (!credentialsFile.exists()) throw new IllegalArgumentException("Credentials file argument not found");
+			props.load(new FileInputStream(credentialsFile));
 			setupMicrosoftAzure(props, box);
 			setupMicrosoftTeams(props, box);
 			setupRocketChat(props, box);
